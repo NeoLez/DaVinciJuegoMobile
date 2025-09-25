@@ -12,7 +12,7 @@ namespace PlayerLoopCleaner {
         private static List<PlayerLoopSystem> insertedSystems = new ();
         //List of subSystems to remove
         private static readonly Type[] TypesToRemove = {
-            typeof(TimeUpdate.WaitForLastPresentationAndUpdateTime), //ALLEGEDLY BREAKS A LOT OF TIME.DELTATIME THINGS
+            //typeof(TimeUpdate.WaitForLastPresentationAndUpdateTime), //ALLEGEDLY BREAKS A LOT OF TIME.DELTATIME THINGS
             
             //typeof(Initialization.AsyncUploadTimeSlicedUpdate), //
             typeof(Initialization.DirectorSampleTime),//DIRECTOR
