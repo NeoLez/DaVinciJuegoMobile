@@ -96,6 +96,7 @@ GameObject:
   - component: {fileID: 8031038560289250440}
   - component: {fileID: 4730466154767245513}
   - component: {fileID: 1370420680834228103}
+  - component: {fileID: 7430676179153228991}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -166,8 +167,60 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d720e273d504d29813a73af0b755547, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackSize: {x: 0, y: 0}
-  attackCooldown: 0
+  attackSize: {x: 4, y: 2}
+  initialPos: {x: 0, y: 0}
+  IsDodging: 0
+  IsAttacking: 0
+  IsInCooldown: 0
+  attackCooldown: 1
+  shieldPrefab: {fileID: 6183437782473450675, guid: 26c6a2f7947c18448a418deececc61f2, type: 3}
+  shieldDistance: 4
+  dodgeDistance: 3
+  dodgeTime: 1
+  dodgeCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.49648368
+      value: 0.99528545
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.50573003
+      value: 0.9945617
+      inSlope: -2.0246763
+      outSlope: -2.0246763
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.112321846
+    - serializedVersion: 3
+      time: 1.0001035
+      value: 0.0004924536
+      inSlope: 0.25067768
+      outSlope: 0.25067768
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.26630348
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  damage: 0
+  visualizerPrefab: {fileID: 6332038379329621760, guid: 39b633d13a9a58848abbc523852ce469, type: 3}
 --- !u!114 &1370420680834228103
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -182,3 +235,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 5
   currentHealth: 5
+--- !u!114 &7430676179153228991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8000408084052696365}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56a113a3fe2848018410fa8cc4aab295, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

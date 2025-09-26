@@ -1,31 +1,35 @@
-﻿using System;
-using Unity.Mathematics;
+﻿using Unity.Mathematics;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider2D))]
 public class PlayerController : MonoBehaviour {
-    [SerializeField] private Vector2 attackSize;
-
     [SerializeField] private Vector2 initialPos;
-
     [SerializeField] private bool IsDodging;
     [SerializeField] private bool IsAttacking;
     [SerializeField] private bool IsInCooldown;
-    
+    private GameObject _shield;
+    private Collider2D _collider;
+
+    [SerializeField] private Vector2 attackSize = new Vector2(4, 2);
+    [SerializeField] private bool dashShouldDisableCollider = true;
     [SerializeField] private float attackCooldown;
-    [SerializeField] private GameObject shieldPrefab;
     [SerializeField] private float shieldDistance;
     [SerializeField] private float dodgeDistance;
     [SerializeField] private float dodgeTime;
-    [SerializeField] private AnimationCurve dodgeCurve;
     [SerializeField] private int damage;
-
+    
+    [SerializeField] private GameObject shieldPrefab;
+    [SerializeField] private AnimationCurve dodgeCurve;
     [SerializeField] private GameObject visualizerPrefab;
-    private GameObject _shield;
-
-    private Collider2D _collider;
     
     private void Start() {
+        Debug.Log("C");
+        dashShouldDisableCollider = RemoteManager.GetBool("dashShouldDisableCollider");
+        damage = RemoteManager.GetInt("playerDamage");
+        attackCooldown = RemoteManager.GetFloat("attackCooldown");
+        dodgeDistance = RemoteManager.GetFloat("dodgeDistance");
+        shieldDistance = RemoteManager.GetFloat("shieldDistance");
+        
         _shield = Instantiate(shieldPrefab, transform);
         _shield.SetActive(false);
         initialPos = transform.position;
@@ -79,7 +83,8 @@ public class PlayerController : MonoBehaviour {
         if (!IsAttacking && !IsDodging) {
             Debug.Log("Dodge");
             dodgeStartTime = Time.time;
-            _collider.enabled = false;
+            if(dashShouldDisableCollider)
+                _collider.enabled = false;
             IsDodging = true;
             direction.y = math.abs(direction.y);
             if (math.abs(direction.x) > direction.y) {
@@ -96,7 +101,8 @@ public class PlayerController : MonoBehaviour {
             float percentage = (Time.time - dodgeStartTime) / dodgeTime;
             if (percentage >= 1) {
                 transform.position = initialPos;
-                _collider.enabled = true;
+                if(dashShouldDisableCollider)
+                    _collider.enabled = true;
                 IsDodging = false;
             }
             else {

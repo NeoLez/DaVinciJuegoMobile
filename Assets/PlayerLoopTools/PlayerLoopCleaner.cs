@@ -217,7 +217,7 @@ namespace PlayerLoopCleaner {
         }
         
         //Removes all instances of the systems specified in TypesToRemove
-        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        //[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
         private static void RunChanges() {
             
             var systems = PlayerLoop.GetCurrentPlayerLoop();
