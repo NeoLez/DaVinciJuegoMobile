@@ -1,7 +1,15 @@
 ﻿using System;
 using UnityEngine;
 
-public class Manager : MonoBehaviour {
+public class InputSystem : MonoBehaviour {
+    public static InputSystem Instance {
+        get;
+        private set;
+    }
+    private void Awake() {
+        Instance = this;
+    }
+
     private readonly CustomTouch[] touches = new CustomTouch[2];
 
     [SerializeField] private float dragDistance;
@@ -12,7 +20,7 @@ public class Manager : MonoBehaviour {
     public event Action<CustomTouch> OnDrag;
     
     
-    private void Update() {
+    public void Update() {
         if (Input.touchCount > 0) {
             for (int i = 0; i < Input.touchCount && i < 2; i++) {
                 
@@ -48,7 +56,7 @@ public class Manager : MonoBehaviour {
                                 OnDrag?.Invoke(touches[i]);
                                 break;
                             case CustomTouchPhase.Hold:
-                                touches[i].OnEnded?.Invoke(touches[i].CurrentPosition);
+                                touches[i].OnEnded?.Invoke();
                                 break;
                         }
                         touches[i].Phase = CustomTouchPhase.Ended;
@@ -64,7 +72,7 @@ public class Manager : MonoBehaviour {
         public Vector2 CurrentPosition;
         public CustomTouchPhase Phase;
         public Action<Vector2> OnPositionChanged;
-        public Action<Vector2> OnEnded;
+        public Action OnEnded;
 
         public CustomTouch(Vector2 initialPosition, CustomTouchPhase phase = CustomTouchPhase.Tap) {
             TimeStarted = Time.time;
