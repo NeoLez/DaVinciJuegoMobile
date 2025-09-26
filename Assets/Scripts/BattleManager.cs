@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Utils;
 
 public class BattleManager : MonoBehaviour { 
@@ -9,9 +10,10 @@ public class BattleManager : MonoBehaviour {
     }
 
     public bool _running;
-    public List<Enemy> enemies;
+    public List<Enemy> enemies = new();
     public float tickTime;
     private Timer _tickTimer = new();
+    public GameObject Player;
 
     public void SetRunning(bool running) {
         _running = running;
@@ -25,5 +27,7 @@ public class BattleManager : MonoBehaviour {
                 enemy.Tick();
             }
         }
+
+        if (enemies.Count == 0) SceneManager.LoadScene(0);
     }
 }

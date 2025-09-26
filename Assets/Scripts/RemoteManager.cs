@@ -17,13 +17,11 @@ public static class RemoteManager {
     
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSplashScreen)]
     private static async Task Initialize() {
-        Debug.Log("A");
-        
         if (Utilities.CheckForInternetConnection()) {
             await InitializeRemoteConfigAsync();
         }
 
-        RemoteConfigService.Instance.FetchCompleted += response => Debug.Log("B"); ;
+        //RemoteConfigService.Instance.FetchCompleted += response => Debug.Log("B"); ;
         RemoteConfigService.Instance.FetchConfigs(new userAttributes(), new appAttributes());
     }
 

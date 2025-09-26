@@ -23,12 +23,11 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] private GameObject visualizerPrefab;
     
     private void Start() {
-        Debug.Log("C");
-        dashShouldDisableCollider = RemoteManager.GetBool("dashShouldDisableCollider");
-        damage = RemoteManager.GetInt("playerDamage");
-        attackCooldown = RemoteManager.GetFloat("attackCooldown");
-        dodgeDistance = RemoteManager.GetFloat("dodgeDistance");
-        shieldDistance = RemoteManager.GetFloat("shieldDistance");
+        //dashShouldDisableCollider = RemoteManager.GetBool("dashShouldDisableCollider");
+        //damage = RemoteManager.GetInt("playerDamage");
+        //attackCooldown = RemoteManager.GetFloat("attackCooldown");
+        //dodgeDistance = RemoteManager.GetFloat("dodgeDistance");
+        //shieldDistance = RemoteManager.GetFloat("shieldDistance");
         
         _shield = Instantiate(shieldPrefab, transform);
         _shield.SetActive(false);
@@ -64,7 +63,8 @@ public class PlayerController : MonoBehaviour {
             
             var colliders = Physics2D.OverlapBoxAll(attackCenter + (Vector2)transform.position, attackSize, angle);
             foreach (var collider in colliders) {
-                if (TryGetComponent(out IHittable hittable)) {
+                
+                if (collider.gameObject.TryGetComponent(out IHittable hittable)) {
                     hittable.Hit(damage);
                 }
             }

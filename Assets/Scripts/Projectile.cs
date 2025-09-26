@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Projectile : MonoBehaviour {
+public class Projectile : MonoBehaviour, IHittable{
     public Vector2 speed;
     public float projectileRadius;
     public int damage;
@@ -21,5 +21,9 @@ public class Projectile : MonoBehaviour {
     private void OnDrawGizmosSelected() {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, projectileRadius);
+    }
+
+    public void Hit(int damage) {
+        speed = -speed;
     }
 }
