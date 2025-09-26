@@ -584,6 +584,10 @@ PrefabInstance:
       propertyPath: currentHealth
       value: 50
       objectReference: {fileID: 0}
+    - target: {fileID: 4730466154767245513, guid: d578d8e8559ced0488d40b042359ad61, type: 3}
+      propertyPath: attackSize.x
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 7926898513971292226, guid: d578d8e8559ced0488d40b042359ad61, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -643,7 +647,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5693135453409057706, guid: e8d15aa3e5e311e4eb4a85f0286ee7d2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.94
+      value: -5.36
       objectReference: {fileID: 0}
     - target: {fileID: 5693135453409057706, guid: e8d15aa3e5e311e4eb4a85f0286ee7d2, type: 3}
       propertyPath: m_LocalPosition.y
